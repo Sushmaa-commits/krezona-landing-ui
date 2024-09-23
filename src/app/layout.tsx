@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import OverlayBanner from "../components/OverlayBanner/OverlayBanner";
+import ReferBanner from "@/components/ReferBanner/ReferBanner";
+import TopFooter from "../components/TopFooter/TopFooter";
+import GetHelp from "../components/GetHelp/GetHelp";
+import MobileNav from "../components/MobileNav/MobileNav";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const openSansItalic = localFont({
+  src: "./fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf",
+  variable: "--font-open-sans-italic",
+  weight: "300 900",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const openSans = localFont({
+  src: "./fonts/OpenSans-VariableFont_wdth,wght.ttf",
+  variable: "--font-open-sans",
+  weight: "300 900",
 });
 
 export const metadata: Metadata = {
@@ -26,9 +33,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${openSans.variable} ${openSansItalic.variable} antialiased `}
       >
-        {children}
+        <Header />
+        <MobileNav />
+        <OverlayBanner />
+        <GetHelp />
+
+        <main className={`xl:mt-24 xl:py-14 2xl:mt-44 2xl:py-20`}>
+          {children}
+        </main>
+        <ReferBanner />
+        <TopFooter />
+        <Footer />
       </body>
     </html>
   );
